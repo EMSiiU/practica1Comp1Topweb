@@ -1,0 +1,9 @@
+# Bloquear archivos ocultos como .env o .gitignore
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+
+# Bloquear directorios sensibles específicos
+RedirectMatch 403 ^/config/
+RedirectMatch 403 ^/vendor/
+RedirectMatch 403 ^/backups/
