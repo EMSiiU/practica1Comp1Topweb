@@ -1,9 +1,9 @@
 <?php
+require_once __DIR__ . '/config/db.php';
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Limpiamos todas las variables de sesión y destruimos la sesión por completo
 $_SESSION = [];
 
 if (ini_get('session.use_cookies')) {
@@ -21,5 +21,5 @@ if (ini_get('session.use_cookies')) {
 
 session_destroy();
 
-header('Location: /login.php');
+header('Location: ' . BASE_URL . '/login.php');
 exit;

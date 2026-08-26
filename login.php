@@ -8,7 +8,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // verifica que no haya una sesipm activa
 if (!empty($_SESSION['usuario_id'])) {
-    header('Location: /crud/list.php');
+    header('Location: ' . BASE_URL . '/crud/list.php');
     exit;
 }
 
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['usuario_id']     = $usuario['id'];
             $_SESSION['usuario_nombre'] = $usuario['nombre'];
 
-            header('Location: /crud/list.php');
+            header('Location: ' . BASE_URL . '/crud/list.php');
             exit;
         }
     }
@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Iniciar sesión - MiApp</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/style.css">
 </head>
 <body>
     <main class="contenedor">

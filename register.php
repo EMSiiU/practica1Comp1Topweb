@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ]);
 
             $_SESSION['mensaje_exito'] = 'Registro exitoso. Ahora puedes iniciar sesión.';
-            header('Location: /login.php');
+            header('Location: ' . BASE_URL . '/login.php');
             exit;
         }
     }
@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Registro - MiApp</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/style.css">
 </head>
 <body>
     <main class="contenedor">

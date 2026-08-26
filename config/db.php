@@ -32,6 +32,7 @@ define('DB_PORT', getenv('DB_PORT') ?: '3308');
 define('DB_NAME', getenv('DB_NAME') ?: 'miapp_db');
 define('DB_USER', getenv('DB_USER') ?: 'miapp_user');
 define('DB_PASS', getenv('DB_PASS') ?: '');
+define('BASE_URL', rtrim(getenv('BASE_URL') ?: '', '/'));
 
 function getConexion(): PDO
 {

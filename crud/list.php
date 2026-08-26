@@ -14,7 +14,7 @@ unset($_SESSION['mensaje_exito']);
 <head>
     <meta charset="UTF-8">
     <title>Usuarios - MiApp</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/style.css">
 </head>
 <body>
     <main class="contenedor">
@@ -22,7 +22,7 @@ unset($_SESSION['mensaje_exito']);
             <h1>Usuarios registrados</h1>
             <p>
                 Sesión iniciada como <strong><?= htmlspecialchars($_SESSION['usuario_nombre']) ?></strong>
-                — <a href="/logout.php">Cerrar sesión</a>
+                — <a href="<?= BASE_URL ?>/logout.php">Cerrar sesión</a>
             </p>
         </div>
 
