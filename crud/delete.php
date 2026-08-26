@@ -5,7 +5,7 @@ require_once __DIR__ . '/../includes/auth_check.php';
 $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT) ?: filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
 
 if (!$id) {
-    header('Location: list.php');
+    header('Location: ' . appUrl('crud/list.php'));
     exit;
 }
 
@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->execute(['id' => $id]);
 
     $_SESSION['mensaje_exito'] = 'Usuario eliminado correctamente.';
-    header('Location: list.php');
+    header('Location: ' . appUrl('crud/list.php'));
     exit;
 }
 
@@ -25,7 +25,7 @@ $stmt->execute(['id' => $id]);
 $usuario = $stmt->fetch();
 
 if (!$usuario) {
-    header('Location: list.php');
+    header('Location: ' . appUrl('crud/list.php'));
     exit;
 }
 ?>
@@ -34,7 +34,7 @@ if (!$usuario) {
 <head>
     <meta charset="UTF-8">
     <title>Eliminar usuario - MiApp</title>
-    <link rel="stylesheet" href="<?= BASE_URL ?>/css/style.css">
+    <link rel="stylesheet" href="<?= htmlspecialchars(appUrl('css/style.css')) ?>">
 </head>
 <body>
     <main class="contenedor">
@@ -47,12 +47,12 @@ if (!$usuario) {
             Esta acción no se puede deshacer.
         </p>
 
-        <form method="post" action="delete.php">
+        <form method="post" action="<?= htmlspecialchars(appUrl('crud/delete.php')) ?>">
             <input type="hidden" name="id" value="<?= (int)$usuario['id'] ?>">
             <button type="submit" class="boton-peligro">Sí, eliminar</button>
         </form>
 
-        <p><a href="list.php">Cancelar</a></p>
+        <p><a href="<?= htmlspecialchars(appUrl('crud/list.php')) ?>">Cancelar</a></p>
     </main>
 </body>
 </html>

@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ]);
 
             $_SESSION['mensaje_exito'] = 'Registro exitoso. Ahora puedes iniciar sesión.';
-            header('Location: ' . BASE_URL . '/login.php');
+            header('Location: ' . appUrl('login.php'));
             exit;
         }
     }
@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Registro - MiApp</title>
-    <link rel="stylesheet" href="<?= BASE_URL ?>/css/style.css">
+    <link rel="stylesheet" href="<?= htmlspecialchars(appUrl('css/style.css')) ?>">
 </head>
 <body>
     <main class="contenedor">
@@ -85,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         <?php endif; ?>
 
-        <form method="post" action="register.php">
+        <form method="post" action="<?= htmlspecialchars(appUrl('register.php')) ?>">
             <label for="nombre">Nombre</label>
             <input type="text" id="nombre" name="nombre" value="<?= htmlspecialchars($nombre) ?>" required>
 
@@ -101,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button type="submit">Registrarme</button>
         </form>
 
-        <p><a href="login.php">Ya tengo una cuenta</a></p>
+        <p><a href="<?= htmlspecialchars(appUrl('login.php')) ?>">Ya tengo una cuenta</a></p>
     </main>
 </body>
 </html>

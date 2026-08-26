@@ -14,7 +14,7 @@ unset($_SESSION['mensaje_exito']);
 <head>
     <meta charset="UTF-8">
     <title>Usuarios - MiApp</title>
-    <link rel="stylesheet" href="<?= BASE_URL ?>/css/style.css">
+    <link rel="stylesheet" href="<?= htmlspecialchars(appUrl('css/style.css')) ?>">
 </head>
 <body>
     <main class="contenedor">
@@ -22,7 +22,7 @@ unset($_SESSION['mensaje_exito']);
             <h1>Usuarios registrados</h1>
             <p>
                 Sesión iniciada como <strong><?= htmlspecialchars($_SESSION['usuario_nombre']) ?></strong>
-                — <a href="<?= BASE_URL ?>/logout.php">Cerrar sesión</a>
+                — <a href="<?= htmlspecialchars(appUrl('logout.php')) ?>">Cerrar sesión</a>
             </p>
         </div>
 
@@ -30,7 +30,7 @@ unset($_SESSION['mensaje_exito']);
             <div class="alerta alerta-exito"><?= htmlspecialchars($mensaje) ?></div>
         <?php endif; ?>
 
-        <p><a href="create.php">+ Agregar usuario</a></p>
+        <p><a href="<?= htmlspecialchars(appUrl('crud/create.php')) ?>">+ Agregar usuario</a></p>
 
         <table>
             <thead>
@@ -53,9 +53,9 @@ unset($_SESSION['mensaje_exito']);
                             <td><?= htmlspecialchars($usuario['email']) ?></td>
                             <td><?= htmlspecialchars($usuario['fecha_registro']) ?></td>
                             <td>
-                                <a href="edit.php?id=<?= (int)$usuario['id'] ?>">Editar</a>
+                                <a href="<?= htmlspecialchars(appUrl('crud/edit.php?id=' . (int)$usuario['id'])) ?>">Editar</a>
                                 |
-                                <a href="delete.php?id=<?= (int)$usuario['id'] ?>">Eliminar</a>
+                                <a href="<?= htmlspecialchars(appUrl('crud/delete.php?id=' . (int)$usuario['id'])) ?>">Eliminar</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

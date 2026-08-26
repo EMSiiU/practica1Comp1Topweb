@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute(['nombre' => $nombre, 'email' => $email, 'password' => $hash]);
 
             $_SESSION['mensaje_exito'] = 'Usuario creado correctamente.';
-            header('Location: list.php');
+            header('Location: ' . appUrl('crud/list.php'));
             exit;
         }
     }
@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Agregar usuario - MiApp</title>
-    <link rel="stylesheet" href="<?= BASE_URL ?>/css/style.css">
+    <link rel="stylesheet" href="<?= htmlspecialchars(appUrl('css/style.css')) ?>">
 </head>
 <body>
     <main class="contenedor">
@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         <?php endif; ?>
 
-        <form method="post" action="create.php">
+        <form method="post" action="<?= htmlspecialchars(appUrl('crud/create.php')) ?>">
             <label for="nombre">Nombre</label>
             <input type="text" id="nombre" name="nombre" value="<?= htmlspecialchars($nombre) ?>" required>
 
@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button type="submit">Guardar</button>
         </form>
 
-        <p><a href="list.php">Volver al listado</a></p>
+        <p><a href="<?= htmlspecialchars(appUrl('crud/list.php')) ?>">Volver al listado</a></p>
     </main>
 </body>
 </html>

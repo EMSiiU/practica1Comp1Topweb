@@ -6,7 +6,7 @@ require_once __DIR__ . '/../includes/validation.php';
 $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
 if (!$id) {
-    header('Location: list.php');
+    header('Location: ' . appUrl('crud/list.php'));
     exit;
 }
 
@@ -17,7 +17,7 @@ $stmt->execute(['id' => $id]);
 $usuario = $stmt->fetch();
 
 if (!$usuario) {
-    header('Location: list.php');
+    header('Location: ' . appUrl('crud/list.php'));
     exit;
 }
 
@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
 
             $_SESSION['mensaje_exito'] = 'Usuario actualizado correctamente.';
-            header('Location: list.php');
+            header('Location: ' . appUrl('crud/list.php'));
             exit;
         }
     }
@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Editar usuario - MiApp</title>
-    <link rel="stylesheet" href="<?= BASE_URL ?>/css/style.css">
+    <link rel="stylesheet" href="<?= htmlspecialchars(appUrl('css/style.css')) ?>">
 </head>
 <body>
     <main class="contenedor">
@@ -93,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         <?php endif; ?>
 
-        <form method="post" action="edit.php?id=<?= (int)$id ?>">
+        <form method="post" action="<?= htmlspecialchars(appUrl('crud/edit.php?id=' . (int)$id)) ?>">
             <label for="nombre">Nombre</label>
             <input type="text" id="nombre" name="nombre" value="<?= htmlspecialchars($nombre) ?>" required>
 
@@ -106,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button type="submit">Actualizar</button>
         </form>
 
-        <p><a href="list.php">Volver al listado</a></p>
+        <p><a href="<?= htmlspecialchars(appUrl('crud/list.php')) ?>">Volver al listado</a></p>
     </main>
 </body>
 </html>

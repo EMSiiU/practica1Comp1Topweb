@@ -34,6 +34,11 @@ define('DB_USER', getenv('DB_USER') ?: 'miapp_user');
 define('DB_PASS', getenv('DB_PASS') ?: '');
 define('BASE_URL', rtrim(getenv('BASE_URL') ?: '', '/'));
 
+function appUrl(string $ruta = ''): string
+{
+    return BASE_URL . '/' . ltrim($ruta, '/');
+}
+
 function getConexion(): PDO
 {
     $dsn = 'mysql:host=' . DB_HOST . ';port=' . DB_PORT . ';dbname=' . DB_NAME . ';charset=utf8mb4';

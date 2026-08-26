@@ -8,7 +8,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // verifica que no haya una sesipm activa
 if (!empty($_SESSION['usuario_id'])) {
-    header('Location: ' . BASE_URL . '/crud/list.php');
+    header('Location: ' . appUrl('crud/list.php'));
     exit;
 }
 
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['usuario_id']     = $usuario['id'];
             $_SESSION['usuario_nombre'] = $usuario['nombre'];
 
-            header('Location: ' . BASE_URL . '/crud/list.php');
+            header('Location: ' . appUrl('crud/list.php'));
             exit;
         }
     }
@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Iniciar sesión - MiApp</title>
-    <link rel="stylesheet" href="<?= BASE_URL ?>/css/style.css">
+    <link rel="stylesheet" href="<?= htmlspecialchars(appUrl('css/style.css')) ?>">
 </head>
 <body>
     <main class="contenedor">
@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         <?php endif; ?>
 
-        <form method="post" action="login.php">
+        <form method="post" action="<?= htmlspecialchars(appUrl('login.php')) ?>">
             <label for="email">Correo electrónico</label>
             <input type="email" id="email" name="email" value="<?= htmlspecialchars($email) ?>" required>
 
@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button type="submit">Entrar</button>
         </form>
 
-        <p><a href="register.php">Crear una cuenta nueva</a></p>
+        <p><a href="<?= htmlspecialchars(appUrl('register.php')) ?>">Crear una cuenta nueva</a></p>
     </main>
 </body>
 </html>
