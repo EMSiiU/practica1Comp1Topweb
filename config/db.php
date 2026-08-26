@@ -11,7 +11,7 @@ function cargarEnv(string $ruta): void
     foreach (file($ruta, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $linea) {
         $linea = trim($linea);
 
-        if ($linea === '' || str_starts_with($linea, '#')) {
+        if ($linea === '' || substr($linea, 0, 1) === '#') {
             continue; //ignorar líneas vacías
         }
 
