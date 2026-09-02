@@ -76,9 +76,10 @@ class UserResource
 
         $data = json_decode(file_get_contents("php://input"));
 
-        if (!empty($data->nombre) && !empty($data->email)) {
+        if (!empty($data->nombre) && !empty($data->email) && isset($data->password) && $data->password !== '') {
             $this->user->nombre = $data->nombre;
             $this->user->email = $data->email;
+            $this->user->password = $data->password;
 
             if ($this->user->create()) {
                 http_response_code(201);

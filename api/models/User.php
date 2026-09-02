@@ -7,6 +7,7 @@ class User
     public $id;
     public $nombre;
     public $email;
+    public $password;
     public $created_at;
 
     public function __construct($db)
@@ -17,16 +18,18 @@ class User
     public function create()
     {
         $query = "INSERT INTO " . $this->table_name . " 
-                  SET nombre=:nombre, email=:email, fecha_registro=:created_at";
+              SET nombre=:nombre, email=:email, password=:password, fecha_registro=:created_at";
 
         $stmt = $this->conn->prepare($query);
 
         $this->nombre = htmlspecialchars(strip_tags($this->nombre));
         $this->email = htmlspecialchars(strip_tags($this->email));
+        $this->password = password_hash((string) $this->password, PASSWORD_DEFAULT);
         $this->created_at = date('Y-m-d H:i:s');
 
         $stmt->bindParam(":nombre", $this->nombre);
         $stmt->bindParam(":email", $this->email);
+        $stmt->bindParam(":password", $this->password);
         $stmt->bindParam(":created_at", $this->created_at);
 
         if ($stmt->execute()) {
