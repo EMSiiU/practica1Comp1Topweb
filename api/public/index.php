@@ -45,7 +45,21 @@ elseif (strpos($requestUri, '/v2/') !== false) {
     $router->addRoute('GET', '/me', [$authResource, 'me']);
 
     $router->dispatch();
-} 
+}
+// V3
+elseif (strpos($requestUri, '/v3/') !== false) {
+    require_once __DIR__ . '/../resources/v3/TaskResource.php';
+    
+    $router = new Router('v3', $basePath);
+    $taskResource = new TaskResource();
+
+    $router->addRoute('GET', '/tareas', [$taskResource, 'getAllTasks']);
+    $router->addRoute('POST', '/tareas', [$taskResource, 'createTask']);
+    $router->addRoute('GET', '/tareas/{id}', [$taskResource, 'getTask']);
+    $router->addRoute('PUT', '/tareas/{id}', [$taskResource, 'updateTask']);
+
+    $router->dispatch();
+}  
 // Ruta no encontrada
 else {
     http_response_code(404);
