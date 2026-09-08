@@ -5,7 +5,7 @@ info:
 servers:
   - url: http://localhost/miapp/api/v3
     description: Local development server
-  - url: /api/v3
+  - url: http://topicosweb.celaya.tecnm.mx/~u22030108/api/v3
     description: Class server
 paths:
   /tareas:
